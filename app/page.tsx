@@ -1,95 +1,157 @@
-import Image from 'next/image'
-import styles from './page.module.css'
+'use client';
+
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import axios from 'axios';
+
+function useActs() {
+  return useQuery({
+    queryKey: ['acts'],
+    queryFn: async () => {
+      const { data } = await axios.get('http://localhost:8080/acts');
+      return data;
+    },
+  });
+}
+
+function useBeats(actId: number) {
+  return useQuery({
+    queryKey: ['beats', actId],
+    queryFn: async () => {
+      const { data } = await axios.get(
+        `http://localhost:8080/acts/${actId}/beats`
+      );
+      return data;
+    },
+  });
+}
 
 export default function Home() {
+  const queryClient = useQueryClient();
+  const addAct = useMutation({
+    mutationFn: (newAct: { name: string }) => {
+      return axios.post('http://localhost:8080/acts', newAct);
+    },
+    onSuccess: () => queryClient.invalidateQueries({ queryKey: ['acts'] }),
+  });
+  const { isLoading, isError, data: acts } = useActs();
+
+  if (isLoading) {
+    return <span>Loading...</span>;
+  }
+
+  if (isError) {
+    return <span>Error</span>;
+  }
+
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>app/page.tsx</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
-      </div>
-
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore the Next.js 13 playground.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
+    <main>
+      {acts.map((act: { id: number; name: string }) => (
+        <>
+          <Act key={act.id} actId={act.id} />
+          <hr />
+        </>
+      ))}
+      <div>
+        <button onClick={() => addAct.mutate({ name: 'test2' })}>
+          Add Act
+        </button>
       </div>
     </main>
-  )
+  );
+}
+
+function Act({ actId }: { actId: number }) {
+  const queryClient = useQueryClient();
+  const deleteAct = useMutation({
+    mutationFn: () => {
+      return axios.delete(`http://localhost:8080/acts/${actId}`);
+    },
+    onSuccess: () => queryClient.invalidateQueries({ queryKey: ['acts'] }),
+  });
+  const addBeat = useMutation({
+    mutationFn: (beat: any) => {
+      return axios.post(`http://localhost:8080/acts/${actId}/beats`, beat);
+    },
+    onSuccess: () =>
+      queryClient.invalidateQueries({ queryKey: ['beats', actId] }),
+  });
+  const { isLoading, isError, data: beats } = useBeats(actId);
+
+  if (isLoading) {
+    return <span>Loading...</span>;
+  }
+
+  if (isError) {
+    return <span>Error</span>;
+  }
+
+  return (
+    <>
+      <div>Act: {actId}</div>
+      <div>
+        {beats.map(
+          (beat: {
+            id: number;
+            name: string;
+            time: string;
+            content: string;
+            cameraAngle: string;
+            notes: string;
+          }) => (
+            <Beat key={beat.id} beatData={beat} actId={actId} />
+          )
+        )}
+      </div>
+      <button
+        onClick={() =>
+          addBeat.mutate({
+            name: 'test',
+            time: 'string',
+            content: 'string',
+            cameraAngle: 'string',
+            notes: 'string',
+          })
+        }
+      >
+        Create beat
+      </button>
+      <button onClick={() => deleteAct.mutate()}>Delete act</button>
+    </>
+  );
+}
+
+function Beat({
+  actId,
+  beatData,
+}: {
+  actId: number;
+  beatData: {
+    id: number;
+    name: string;
+    time: string;
+    content: string;
+    cameraAngle: string;
+    notes: string;
+  };
+}) {
+  const queryClient = useQueryClient();
+  const deleteBeat = useMutation({
+    mutationFn: () => {
+      return axios.delete(
+        `http://localhost:8080/acts/${actId}/beats/${beatData.id}`
+      );
+    },
+    onSuccess: () =>
+      queryClient.invalidateQueries({ queryKey: ['beats', actId] }),
+  });
+  return (
+    <>
+      <div>
+        {beatData.name} / {beatData.id}
+      </div>
+      <div>
+        <button onClick={() => deleteBeat.mutate()}>Delete beat</button>
+      </div>
+    </>
+  );
 }
