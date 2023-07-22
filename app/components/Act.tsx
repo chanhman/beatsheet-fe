@@ -1,9 +1,13 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import axios from 'axios';
 import { useActs, useBeats } from '../lib/hooks';
-import Beat from './Beat';
+import Beat, { BeatData } from './Beat';
 
-export default function Act({ actId }: { actId: number }) {
+interface Props {
+  actId: number;
+}
+
+export default function Act({ actId }: Props) {
   const queryClient = useQueryClient();
   const deleteAct = useMutation({
     mutationFn: () => {
@@ -32,18 +36,9 @@ export default function Act({ actId }: { actId: number }) {
     <>
       <div>Act: {actId}</div>
       <div>
-        {beats.map(
-          (beat: {
-            id: number;
-            name: string;
-            time: string;
-            content: string;
-            cameraAngle: string;
-            notes: string;
-          }) => (
-            <Beat key={beat.id} beatData={beat} actId={actId} />
-          )
-        )}
+        {beats.map((beat: BeatData) => (
+          <Beat key={beat.id} beatData={beat} actId={actId} />
+        ))}
       </div>
       <button
         onClick={() =>

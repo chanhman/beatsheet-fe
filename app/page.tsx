@@ -5,6 +5,11 @@ import axios from 'axios';
 import { useActs, useBeats } from './lib/hooks';
 import Act from './components/Act';
 
+interface Act {
+  id: number;
+  name: string;
+}
+
 export default function Home() {
   const queryClient = useQueryClient();
   const addAct = useMutation({
@@ -25,7 +30,7 @@ export default function Home() {
 
   return (
     <main>
-      {acts.map((act: { id: number; name: string }) => (
+      {acts.map((act: Act) => (
         <>
           <Act key={act.id} actId={act.id} />
           <hr />

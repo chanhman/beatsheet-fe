@@ -1,20 +1,21 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import axios from 'axios';
 
-export default function Beat({
-  actId,
-  beatData,
-}: {
+export interface BeatData {
+  id: number;
+  name: string;
+  time: string;
+  content: string;
+  cameraAngle: string;
+  notes: string;
+}
+
+interface Props {
   actId: number;
-  beatData: {
-    id: number;
-    name: string;
-    time: string;
-    content: string;
-    cameraAngle: string;
-    notes: string;
-  };
-}) {
+  beatData: BeatData;
+}
+
+export default function Beat({ actId, beatData }: Props) {
   const queryClient = useQueryClient();
   const deleteBeat = useMutation({
     mutationFn: () => {
