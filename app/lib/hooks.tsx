@@ -22,3 +22,13 @@ export function useBeats(actId: number) {
     },
   });
 }
+
+export function useBeat(beatId: string) {
+  return useQuery({
+    queryKey: ['beat', beatId],
+    queryFn: async () => {
+      const { data } = await axios.get(`http://localhost:8080/beats/${beatId}`);
+      return data;
+    },
+  });
+}
