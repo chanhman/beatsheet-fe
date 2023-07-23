@@ -17,12 +17,7 @@ interface FormData {
 
 export default function Beat({ params }: { params: { id: string } }) {
   const queryClient = useQueryClient();
-  const {
-    register,
-    setValue,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<FormData>();
+  const { register, handleSubmit } = useForm<FormData>();
   const { isLoading, isError, data: beat } = useBeat(params.id);
 
   const updateBeat = useMutation({

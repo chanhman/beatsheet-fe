@@ -29,9 +29,7 @@ export default function Beat({ actId, beatData }: Props) {
   });
   return (
     <>
-      <div>
-        {beatData.name} / {beatData.id}
-      </div>
+      <div>{beatData.name}</div>
       <div>
         <Link href={`/beats/${beatData.id}`}>Edit beat</Link>
         <button onClick={() => deleteBeat.mutate()}>Delete beat</button>

@@ -16,13 +16,7 @@ interface FormData {
 
 export default function CreateBeat({ params }: { params: { id: string } }) {
   const queryClient = useQueryClient();
-  const {
-    register,
-    setValue,
-    handleSubmit,
-    reset,
-    formState: { errors },
-  } = useForm<FormData>();
+  const { register, handleSubmit, reset } = useForm<FormData>();
   const createBeat = useMutation({
     mutationFn: (beat: any) => {
       return axios.post(`http://localhost:8080/acts/${params.id}/beats`, beat);
@@ -36,7 +30,6 @@ export default function CreateBeat({ params }: { params: { id: string } }) {
     // Ref: https://github.com/orgs/react-hook-form/discussions/8020
     <form
       onSubmit={handleSubmit((values) =>
-        // ✅ reset client state back to undefined
         createBeat.mutate(values, { onSuccess: () => reset() })
       )}
     >

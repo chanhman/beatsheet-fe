@@ -1,8 +1,8 @@
 'use client';
 
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import axios from 'axios';
-import { useActs, useBeats } from './lib/hooks';
+import { useActs } from './lib/hooks';
 import Act from './components/Act';
 
 interface Act {
