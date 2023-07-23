@@ -6,7 +6,12 @@ interface FormData {
 }
 
 export default function CreateAct() {
-  const { register, handleSubmit, reset } = useForm<FormData>();
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm<FormData>();
   const { mutate: createAct } = useCreateActMutation();
 
   return (
@@ -16,7 +21,10 @@ export default function CreateAct() {
       )}
     >
       <label htmlFor="name">Act name</label>
-      <input type="text" {...register('name')} />
+      <input type="text" {...register('name', { required: true })} />
+      {errors.name?.type === 'required' && (
+        <p role="alert">Act name is required</p>
+      )}
       <button>Create act</button>
     </form>
   );

@@ -14,7 +14,11 @@ interface FormData {
 }
 
 export default function Beat({ params }: { params: { id: string } }) {
-  const { register, handleSubmit } = useForm<FormData>();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FormData>();
   const { isLoading, isError, data: beat } = useBeat(params.id);
   const { mutate: updateBeat, isLoading: updateBeatIsLoading } =
     useUpdateBeatMutation(params.id);
@@ -33,31 +37,58 @@ export default function Beat({ params }: { params: { id: string } }) {
     <form onSubmit={handleSubmit(updateBeat)}>
       <div>
         <label htmlFor="beatName">Beat name: </label>
-        <input type="text" {...register('name')} defaultValue={beat.name} />
-      </div>
-      <div>
-        <label htmlFor="cameraAngle">cameraAngle: </label>
         <input
           type="text"
-          {...register('cameraAngle')}
+          {...register('name', { required: true })}
+          defaultValue={beat.name}
+        />
+        {errors.name?.type === 'required' && (
+          <p role="alert">Beat name is required</p>
+        )}
+      </div>
+      <div>
+        <label htmlFor="cameraAngle">Camera angle: </label>
+        <input
+          type="text"
+          {...register('cameraAngle', { required: true })}
           defaultValue={beat.cameraAngle}
         />
+        {errors.cameraAngle?.type === 'required' && (
+          <p role="alert">Camera angle is required</p>
+        )}
       </div>
       <div>
-        <label htmlFor="content">content: </label>
+        <label htmlFor="content">Content: </label>
         <input
           type="text"
-          {...register('content')}
+          {...register('content', { required: true })}
           defaultValue={beat.content}
         />
+        {errors.content?.type === 'required' && (
+          <p role="alert">Content is required</p>
+        )}
       </div>
       <div>
-        <label htmlFor="notes">notes: </label>
-        <input type="text" {...register('notes')} defaultValue={beat.notes} />
+        <label htmlFor="notes">Notes: </label>
+        <input
+          type="text"
+          {...register('notes', { required: true })}
+          defaultValue={beat.notes}
+        />
+        {errors.notes?.type === 'required' && (
+          <p role="alert">Notes are required</p>
+        )}
       </div>
       <div>
-        <label htmlFor="time">time: </label>
-        <input type="text" {...register('time')} defaultValue={beat.time} />
+        <label htmlFor="time">Time: </label>
+        <input
+          type="text"
+          {...register('time', { required: true })}
+          defaultValue={beat.time}
+        />
+        {errors.time?.type === 'required' && (
+          <p role="alert">Time range is required</p>
+        )}
       </div>
       <button disabled={updateBeatIsLoading}>
         {updateBeatIsLoading ? 'Saving' : 'Save'}

@@ -15,7 +15,12 @@ interface FormData {
 
 export default function CreateBeat({ params }: { params: { id: string } }) {
   const { mutate: createBeat, isLoading } = useCreateBeatMutation(params.id);
-  const { register, handleSubmit, reset } = useForm<FormData>();
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm<FormData>();
 
   return (
     // @ts-ignore
@@ -27,23 +32,38 @@ export default function CreateBeat({ params }: { params: { id: string } }) {
     >
       <div>
         <label htmlFor="beatName">Beat name: </label>
-        <input type="text" {...register('name')} />
+        <input type="text" {...register('name', { required: true })} />
+        {errors.name?.type === 'required' && (
+          <p role="alert">Beat name is required</p>
+        )}
       </div>
       <div>
-        <label htmlFor="cameraAngle">cameraAngle: </label>
-        <input type="text" {...register('cameraAngle')} />
+        <label htmlFor="cameraAngle">Camera angle: </label>
+        <input type="text" {...register('cameraAngle', { required: true })} />
+        {errors.cameraAngle?.type === 'required' && (
+          <p role="alert">Camera angle is required</p>
+        )}
       </div>
       <div>
-        <label htmlFor="content">content: </label>
-        <input type="text" {...register('content')} />
+        <label htmlFor="content">Content: </label>
+        <input type="text" {...register('content', { required: true })} />
+        {errors.content?.type === 'required' && (
+          <p role="alert">Content is required</p>
+        )}
       </div>
       <div>
-        <label htmlFor="notes">notes: </label>
-        <input type="text" {...register('notes')} />
+        <label htmlFor="notes">Notes: </label>
+        <input type="text" {...register('notes', { required: true })} />
+        {errors.notes?.type === 'required' && (
+          <p role="alert">Notes are required</p>
+        )}
       </div>
       <div>
-        <label htmlFor="time">time: </label>
-        <input type="text" {...register('time')} />
+        <label htmlFor="time">Time: </label>
+        <input type="text" {...register('time', { required: true })} />
+        {errors.time?.type === 'required' && (
+          <p role="alert">Time range is required</p>
+        )}
       </div>
       <button disabled={isLoading}>{isLoading ? 'Creating' : 'Create'}</button>
       <Link href="/">Back</Link>
