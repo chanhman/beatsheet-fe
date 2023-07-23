@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { useForm } from 'react-hook-form';
 import { useCreateBeatMutation } from '@/app/lib/hooks';
+import styles from '@/app/edit-beat/[id]/styles.module.scss';
 
 interface FormData {
   id: number;
@@ -23,50 +24,68 @@ export default function CreateBeat({ params }: { params: { id: string } }) {
   } = useForm<FormData>();
 
   return (
-    // @ts-ignore
-    // Ref: https://github.com/orgs/react-hook-form/discussions/8020
-    <form
-      onSubmit={handleSubmit((values) =>
-        createBeat(values, { onSuccess: () => reset() })
-      )}
-    >
-      <div>
-        <label htmlFor="beatName">Beat name: </label>
-        <input type="text" {...register('name', { required: true })} />
-        {errors.name?.type === 'required' && (
-          <p role="alert">Beat name is required</p>
-        )}
+    <div className={styles.container}>
+      <div className={styles.header}>
+        <h1 className={styles.heading}>Create beat</h1>
+        <Link href="/">Back</Link>
       </div>
-      <div>
-        <label htmlFor="cameraAngle">Camera angle: </label>
-        <input type="text" {...register('cameraAngle', { required: true })} />
-        {errors.cameraAngle?.type === 'required' && (
-          <p role="alert">Camera angle is required</p>
+      <form
+        className={styles.form}
+        onSubmit={handleSubmit((values) =>
+          createBeat(values, { onSuccess: () => reset() })
         )}
-      </div>
-      <div>
-        <label htmlFor="content">Content: </label>
-        <input type="text" {...register('content', { required: true })} />
-        {errors.content?.type === 'required' && (
-          <p role="alert">Content is required</p>
-        )}
-      </div>
-      <div>
-        <label htmlFor="notes">Notes: </label>
-        <input type="text" {...register('notes', { required: true })} />
-        {errors.notes?.type === 'required' && (
-          <p role="alert">Notes are required</p>
-        )}
-      </div>
-      <div>
-        <label htmlFor="time">Time: </label>
-        <input type="text" {...register('time', { required: true })} />
-        {errors.time?.type === 'required' && (
-          <p role="alert">Time range is required</p>
-        )}
-      </div>
-      <button disabled={isLoading}>{isLoading ? 'Creating' : 'Create'}</button>
-      <Link href="/">Back</Link>
-    </form>
+      >
+        <div className={styles.group}>
+          <label className={styles.label} htmlFor="beatName">
+            Beat name:{' '}
+          </label>
+          <input type="text" {...register('name', { required: true })} />
+          {errors.name?.type === 'required' && (
+            <p role="alert">Beat name is required</p>
+          )}
+        </div>
+        <div className={styles.group}>
+          <label className={styles.label} htmlFor="cameraAngle">
+            Camera angle:{' '}
+          </label>
+          <input type="text" {...register('cameraAngle', { required: true })} />
+          {errors.cameraAngle?.type === 'required' && (
+            <p role="alert">Camera angle is required</p>
+          )}
+        </div>
+        <div className={styles.group}>
+          <label className={styles.label} htmlFor="content">
+            Content:{' '}
+          </label>
+          <input type="text" {...register('content', { required: true })} />
+          {errors.content?.type === 'required' && (
+            <p role="alert">Content is required</p>
+          )}
+        </div>
+        <div className={styles.group}>
+          <label className={styles.label} htmlFor="notes">
+            Notes:{' '}
+          </label>
+          <input type="text" {...register('notes', { required: true })} />
+          {errors.notes?.type === 'required' && (
+            <p role="alert">Notes are required</p>
+          )}
+        </div>
+        <div className={styles.group}>
+          <label className={styles.label} htmlFor="time">
+            Time:{' '}
+          </label>
+          <input type="text" {...register('time', { required: true })} />
+          {errors.time?.type === 'required' && (
+            <p role="alert">Time range is required</p>
+          )}
+        </div>
+        <div className={styles.footer}>
+          <button disabled={isLoading}>
+            {isLoading ? 'Creating' : 'Create'}
+          </button>
+        </div>
+      </form>
+    </div>
   );
 }

@@ -1,8 +1,12 @@
+// @ts-nocheck
+// Ref: https://github.com/orgs/react-hook-form/discussions/8020
+
 'use client';
 
 import Link from 'next/link';
 import { useForm } from 'react-hook-form';
 import { useBeat, useUpdateBeatMutation } from '@/app/lib/hooks';
+import styles from './styles.module.scss';
 
 interface FormData {
   id: number;
@@ -32,68 +36,88 @@ export default function Beat({ params }: { params: { id: string } }) {
   }
 
   return (
-    // @ts-ignore
-    // Ref: https://github.com/orgs/react-hook-form/discussions/8020
-    <form onSubmit={handleSubmit(updateBeat)}>
-      <div>
-        <label htmlFor="beatName">Beat name: </label>
-        <input
-          type="text"
-          {...register('name', { required: true })}
-          defaultValue={beat.name}
-        />
-        {errors.name?.type === 'required' && (
-          <p role="alert">Beat name is required</p>
-        )}
+    <div className={styles.container}>
+      <div className={styles.header}>
+        <h1 className={styles.heading}>Edit beat</h1>
+        <Link href="/">Back</Link>
       </div>
-      <div>
-        <label htmlFor="cameraAngle">Camera angle: </label>
-        <input
-          type="text"
-          {...register('cameraAngle', { required: true })}
-          defaultValue={beat.cameraAngle}
-        />
-        {errors.cameraAngle?.type === 'required' && (
-          <p role="alert">Camera angle is required</p>
-        )}
-      </div>
-      <div>
-        <label htmlFor="content">Content: </label>
-        <input
-          type="text"
-          {...register('content', { required: true })}
-          defaultValue={beat.content}
-        />
-        {errors.content?.type === 'required' && (
-          <p role="alert">Content is required</p>
-        )}
-      </div>
-      <div>
-        <label htmlFor="notes">Notes: </label>
-        <input
-          type="text"
-          {...register('notes', { required: true })}
-          defaultValue={beat.notes}
-        />
-        {errors.notes?.type === 'required' && (
-          <p role="alert">Notes are required</p>
-        )}
-      </div>
-      <div>
-        <label htmlFor="time">Time: </label>
-        <input
-          type="text"
-          {...register('time', { required: true })}
-          defaultValue={beat.time}
-        />
-        {errors.time?.type === 'required' && (
-          <p role="alert">Time range is required</p>
-        )}
-      </div>
-      <button disabled={updateBeatIsLoading}>
-        {updateBeatIsLoading ? 'Saving' : 'Save'}
-      </button>
-      <Link href="/">Back</Link>
-    </form>
+      <form className={styles.form} onSubmit={handleSubmit(updateBeat)}>
+        <div className={styles.group}>
+          <label className={styles.label} htmlFor="beatName">
+            Beat name:
+          </label>
+          <input
+            className={styles.input}
+            type="text"
+            {...register('name', { required: true })}
+            defaultValue={beat.name}
+          />
+          {errors.name?.type === 'required' && (
+            <p role="alert">Beat name is required</p>
+          )}
+        </div>
+        <div className={styles.group}>
+          <label className={styles.label} htmlFor="cameraAngle">
+            Camera angle:
+          </label>
+          <input
+            className={styles.input}
+            type="text"
+            {...register('cameraAngle', { required: true })}
+            defaultValue={beat.cameraAngle}
+          />
+          {errors.cameraAngle?.type === 'required' && (
+            <p role="alert">Camera angle is required</p>
+          )}
+        </div>
+        <div className={styles.group}>
+          <label className={styles.label} htmlFor="content">
+            Content:
+          </label>
+          <input
+            className={styles.input}
+            type="text"
+            {...register('content', { required: true })}
+            defaultValue={beat.content}
+          />
+          {errors.content?.type === 'required' && (
+            <p role="alert">Content is required</p>
+          )}
+        </div>
+        <div className={styles.group}>
+          <label className={styles.label} htmlFor="notes">
+            Notes:
+          </label>
+          <input
+            className={styles.input}
+            type="text"
+            {...register('notes', { required: true })}
+            defaultValue={beat.notes}
+          />
+          {errors.notes?.type === 'required' && (
+            <p role="alert">Notes are required</p>
+          )}
+        </div>
+        <div className={styles.group}>
+          <label className={styles.label} htmlFor="time">
+            Time:
+          </label>
+          <input
+            className={styles.input}
+            type="text"
+            {...register('time', { required: true })}
+            defaultValue={beat.time}
+          />
+          {errors.time?.type === 'required' && (
+            <p role="alert">Time range is required</p>
+          )}
+        </div>
+        <div className={styles.footer}>
+          <button disabled={updateBeatIsLoading}>
+            {updateBeatIsLoading ? 'Saving' : 'Save'}
+          </button>
+        </div>
+      </form>
+    </div>
   );
 }
