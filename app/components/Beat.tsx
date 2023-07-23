@@ -31,7 +31,7 @@ export default function Beat({ actId, beatData }: Props) {
     <>
       <div>{beatData.name}</div>
       <div>
-        <Link href={`/beats/${beatData.id}`}>Edit beat</Link>
+        <Link href={`/edit-beat/${beatData.id}`}>Edit beat</Link>
         <button onClick={() => deleteBeat.mutate()}>Delete beat</button>
       </div>
     </>

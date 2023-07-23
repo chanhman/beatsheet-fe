@@ -4,7 +4,7 @@ import Link from 'next/link';
 import axios from 'axios';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useForm } from 'react-hook-form';
-
+import { BeatData } from '@/app/components/Beat';
 interface FormData {
   id: number;
   name: string;
@@ -18,7 +18,7 @@ export default function CreateBeat({ params }: { params: { id: string } }) {
   const queryClient = useQueryClient();
   const { register, handleSubmit, reset } = useForm<FormData>();
   const createBeat = useMutation({
-    mutationFn: (beat: any) => {
+    mutationFn: (beat: BeatData) => {
       return axios.post(`http://localhost:8080/acts/${params.id}/beats`, beat);
     },
     onSuccess: () =>

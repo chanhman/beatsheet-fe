@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import axios from 'axios';
 import { useBeats } from '../lib/hooks';
@@ -34,6 +35,7 @@ export default function Act({ actId }: Props) {
           <Beat key={beat.id} beatData={beat} actId={actId} />
         ))}
       </div>
+      <Link href={`/create-beat/${actId}`}>Create beat</Link>
       <button onClick={() => deleteAct.mutate()}>Delete act</button>
     </>
   );
