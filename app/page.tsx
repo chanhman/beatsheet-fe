@@ -4,7 +4,7 @@ import { useActs } from './lib/hooks';
 import Act from './components/Act';
 import CreateAct from './components/CreateAct';
 
-interface Act {
+export interface Act {
   id: number;
   name: string;
 }
@@ -23,10 +23,7 @@ export default function Home() {
   return (
     <main>
       {acts.map((act: Act) => (
-        <>
-          <Act key={act.id} actId={act.id} />
-          <hr />
-        </>
+        <Act key={act.id} actData={act} />
       ))}
       <CreateAct />
     </main>

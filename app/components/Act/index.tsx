@@ -1,12 +1,15 @@
 import Link from 'next/link';
-import { useBeats, useDeleteActMutation } from '../lib/hooks';
-import Beat, { BeatData } from './Beat';
+import { useBeats, useDeleteActMutation } from '../../lib/hooks';
+import Beat, { BeatData } from '../Beat';
+import { Act } from '@/app/page';
+import styles from './styles.module.scss';
 
 interface Props {
-  actId: number;
+  actData: Act;
 }
 
-export default function Act({ actId }: Props) {
+export default function Act({ actData }: Props) {
+  const { id: actId, name: actName } = actData;
   const { isLoading, isError, data: beats } = useBeats(actId);
   const { mutate: deleteAct } = useDeleteActMutation(actId);
 
@@ -19,8 +22,8 @@ export default function Act({ actId }: Props) {
   }
 
   return (
-    <>
-      <div>Act: {actId}</div>
+    <div className={styles.container}>
+      <div>Act: {actName}</div>
       <div>
         {beats.map((beat: BeatData) => (
           <Beat key={beat.id} beatData={beat} actId={actId} />
@@ -28,6 +31,6 @@ export default function Act({ actId }: Props) {
       </div>
       <Link href={`/create-beat/${actId}`}>Create beat</Link>
       <button onClick={() => deleteAct()}>Delete act</button>
-    </>
+    </div>
   );
 }

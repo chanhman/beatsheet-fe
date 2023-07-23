@@ -1,0 +1,8 @@
+.container {
+  padding: 1rem;
+  background-color: #eee;
+
+  &:not(:last-child) {
+    margin-bottom: 1rem;
+  }
+}
