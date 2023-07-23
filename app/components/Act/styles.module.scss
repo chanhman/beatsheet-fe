@@ -1,6 +1,7 @@
 .container {
-  padding: 1rem;
+  padding: 1.5rem;
   background-color: #eee;
+  border-radius: 0.25rem;
 
   &:not(:last-child) {
     margin-bottom: 1rem;
@@ -11,11 +12,17 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 1rem;
 }
 
 .headerOptions {
   display: flex;
   gap: 1rem;
+}
+
+.name {
+  margin-top: 0;
+  margin-bottom: 0;
 }
 
 .beats {

@@ -24,7 +24,7 @@ export default function Act({ actData }: Props) {
   return (
     <section className={styles.container}>
       <div className={styles.header}>
-        <h2>Act: {actName}</h2>
+        <h2 className={styles.name}>Act: {actName}</h2>
         <div className={styles.headerOptions}>
           <button onClick={() => deleteAct()}>Delete act</button>
           <Link href={`/create-beat/${actId}`}>Create a beat</Link>

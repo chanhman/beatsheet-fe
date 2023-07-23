@@ -21,9 +21,11 @@ export default function Beat({ actId, beatData }: Props) {
 
   return (
     <div className={styles.container}>
-      <div className={styles.time}>{beatData.time}</div>
-      <h3>{beatData.name}</h3>
-      <p>{beatData.content}</p>
+      <div>
+        <div className={styles.time}>{beatData.time}</div>
+      </div>
+      <h3 className={styles.name}>{beatData.name}</h3>
+      <p className={styles.content}>{beatData.content}</p>
       <div className={styles.footer}>
         <Link href={`/edit-beat/${beatData.id}`}>Edit beat</Link>
         <button onClick={() => deleteBeat()}>Delete beat</button>
