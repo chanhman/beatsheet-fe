@@ -1,9 +1,8 @@
 'use client';
 
-import { useMutation, useQueryClient } from '@tanstack/react-query';
-import axios from 'axios';
 import { useActs } from './lib/hooks';
 import Act from './components/Act';
+import CreateAct from './components/CreateAct';
 
 interface Act {
   id: number;
@@ -11,13 +10,6 @@ interface Act {
 }
 
 export default function Home() {
-  const queryClient = useQueryClient();
-  const addAct = useMutation({
-    mutationFn: (newAct: { name: string }) => {
-      return axios.post('http://localhost:8080/acts', newAct);
-    },
-    onSuccess: () => queryClient.invalidateQueries({ queryKey: ['acts'] }),
-  });
   const { isLoading, isError, data: acts } = useActs();
 
   if (isLoading) {
@@ -36,11 +28,7 @@ export default function Home() {
           <hr />
         </>
       ))}
-      <div>
-        <button onClick={() => addAct.mutate({ name: 'test2' })}>
-          Add Act
-        </button>
-      </div>
+      <CreateAct />
     </main>
   );
 }
