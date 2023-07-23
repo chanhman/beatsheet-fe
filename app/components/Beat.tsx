@@ -1,6 +1,5 @@
 import Link from 'next/link';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
-import axios from 'axios';
+import { useDeleteBeatMutation } from '../lib/hooks';
 
 export interface BeatData {
   id: number;
@@ -17,22 +16,14 @@ interface Props {
 }
 
 export default function Beat({ actId, beatData }: Props) {
-  const queryClient = useQueryClient();
-  const deleteBeat = useMutation({
-    mutationFn: () => {
-      return axios.delete(
-        `http://localhost:8080/acts/${actId}/beats/${beatData.id}`
-      );
-    },
-    onSuccess: () =>
-      queryClient.invalidateQueries({ queryKey: ['beats', actId] }),
-  });
+  const { mutate: deleteBeat } = useDeleteBeatMutation(actId, beatData.id);
+
   return (
     <>
       <div>{beatData.name}</div>
       <div>
         <Link href={`/edit-beat/${beatData.id}`}>Edit beat</Link>
-        <button onClick={() => deleteBeat.mutate()}>Delete beat</button>
+        <button onClick={() => deleteBeat()}>Delete beat</button>
       </div>
     </>
   );

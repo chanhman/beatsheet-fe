@@ -1,10 +1,8 @@
 'use client';
 
 import Link from 'next/link';
-import axios from 'axios';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useForm } from 'react-hook-form';
-import { BeatData } from '@/app/components/Beat';
+import { useCreateBeatMutation } from '@/app/lib/hooks';
 
 interface FormData {
   id: number;
@@ -16,22 +14,15 @@ interface FormData {
 }
 
 export default function CreateBeat({ params }: { params: { id: string } }) {
-  const queryClient = useQueryClient();
+  const { mutate: createBeat, isLoading } = useCreateBeatMutation(params.id);
   const { register, handleSubmit, reset } = useForm<FormData>();
-  const createBeat = useMutation({
-    mutationFn: (beat: BeatData) => {
-      return axios.post(`http://localhost:8080/acts/${params.id}/beats`, beat);
-    },
-    onSuccess: () =>
-      queryClient.invalidateQueries({ queryKey: ['beats', params.id] }),
-  });
 
   return (
     // @ts-ignore
     // Ref: https://github.com/orgs/react-hook-form/discussions/8020
     <form
       onSubmit={handleSubmit((values) =>
-        createBeat.mutate(values, { onSuccess: () => reset() })
+        createBeat(values, { onSuccess: () => reset() })
       )}
     >
       <div>
@@ -54,9 +45,7 @@ export default function CreateBeat({ params }: { params: { id: string } }) {
         <label htmlFor="time">time: </label>
         <input type="text" {...register('time')} />
       </div>
-      <button disabled={createBeat.isLoading}>
-        {createBeat.isLoading ? 'Creating' : 'Create'}
-      </button>
+      <button disabled={isLoading}>{isLoading ? 'Creating' : 'Create'}</button>
       <Link href="/">Back</Link>
     </form>
   );

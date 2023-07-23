@@ -1,7 +1,5 @@
 import Link from 'next/link';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
-import axios from 'axios';
-import { useBeats } from '../lib/hooks';
+import { useBeats, useDeleteActMutation } from '../lib/hooks';
 import Beat, { BeatData } from './Beat';
 
 interface Props {
@@ -9,15 +7,8 @@ interface Props {
 }
 
 export default function Act({ actId }: Props) {
-  const queryClient = useQueryClient();
-  const deleteAct = useMutation({
-    mutationFn: () => {
-      return axios.delete(`http://localhost:8080/acts/${actId}`);
-    },
-    onSuccess: () => queryClient.invalidateQueries({ queryKey: ['acts'] }),
-  });
-
   const { isLoading, isError, data: beats } = useBeats(actId);
+  const { mutate: deleteAct } = useDeleteActMutation(actId);
 
   if (isLoading) {
     return <span>Loading...</span>;
@@ -36,7 +27,7 @@ export default function Act({ actId }: Props) {
         ))}
       </div>
       <Link href={`/create-beat/${actId}`}>Create beat</Link>
-      <button onClick={() => deleteAct.mutate()}>Delete act</button>
+      <button onClick={() => deleteAct()}>Delete act</button>
     </>
   );
 }
