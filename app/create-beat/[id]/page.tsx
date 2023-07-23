@@ -40,45 +40,65 @@ export default function CreateBeat({ params }: { params: { id: string } }) {
       >
         <div className={styles.group}>
           <label className={styles.label} htmlFor="beatName">
-            Beat name:{' '}
+            Beat name:
           </label>
-          <input type="text" {...register('name', { required: true })} />
+          <input
+            className={styles.input}
+            type="text"
+            {...register('name', { required: true })}
+          />
           {errors.name?.type === 'required' && (
             <p role="alert">Beat name is required</p>
           )}
         </div>
         <div className={styles.group}>
           <label className={styles.label} htmlFor="cameraAngle">
-            Camera angle:{' '}
+            Camera angle:
           </label>
-          <input type="text" {...register('cameraAngle', { required: true })} />
+          <input
+            className={styles.input}
+            type="text"
+            {...register('cameraAngle', { required: true })}
+          />
           {errors.cameraAngle?.type === 'required' && (
             <p role="alert">Camera angle is required</p>
           )}
         </div>
         <div className={styles.group}>
           <label className={styles.label} htmlFor="content">
-            Content:{' '}
+            Content:
           </label>
-          <input type="text" {...register('content', { required: true })} />
+          <textarea
+            className={styles.input}
+            rows={6}
+            {...register('content', { required: true })}
+          />
           {errors.content?.type === 'required' && (
             <p role="alert">Content is required</p>
           )}
         </div>
         <div className={styles.group}>
           <label className={styles.label} htmlFor="notes">
-            Notes:{' '}
+            Notes:
           </label>
-          <input type="text" {...register('notes', { required: true })} />
+          <textarea
+            className={styles.input}
+            rows={6}
+            {...register('notes', { required: true })}
+          />
           {errors.notes?.type === 'required' && (
             <p role="alert">Notes are required</p>
           )}
         </div>
         <div className={styles.group}>
           <label className={styles.label} htmlFor="time">
-            Time:{' '}
+            Time:
           </label>
-          <input type="text" {...register('time', { required: true })} />
+          <input
+            className={styles.input}
+            type="text"
+            {...register('time', { required: true })}
+          />
           {errors.time?.type === 'required' && (
             <p role="alert">Time range is required</p>
           )}

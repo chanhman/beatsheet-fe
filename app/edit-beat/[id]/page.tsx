@@ -77,9 +77,9 @@ export default function Beat({ params }: { params: { id: string } }) {
           <label className={styles.label} htmlFor="content">
             Content:
           </label>
-          <input
+          <textarea
             className={styles.input}
-            type="text"
+            rows={6}
             {...register('content', { required: true })}
             defaultValue={beat.content}
           />
@@ -91,9 +91,9 @@ export default function Beat({ params }: { params: { id: string } }) {
           <label className={styles.label} htmlFor="notes">
             Notes:
           </label>
-          <input
+          <textarea
             className={styles.input}
-            type="text"
+            rows={6}
             {...register('notes', { required: true })}
             defaultValue={beat.notes}
           />
