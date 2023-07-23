@@ -19,12 +19,12 @@ export default function Beat({ actId, beatData }: Props) {
   const { mutate: deleteBeat } = useDeleteBeatMutation(actId, beatData.id);
 
   return (
-    <>
+    <div>
       <div>{beatData.name}</div>
       <div>
         <Link href={`/edit-beat/${beatData.id}`}>Edit beat</Link>
         <button onClick={() => deleteBeat()}>Delete beat</button>
       </div>
-    </>
+    </div>
   );
 }
