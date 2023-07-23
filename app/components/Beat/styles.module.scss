@@ -4,15 +4,14 @@
   gap: 0.5rem;
   padding: 1rem;
   background-color: #fff;
-  border: 0.125rem solid #c0c5ce;
+  border: 0.125rem solid #000;
 }
 
 .time {
   display: inline-block;
   justify-self: start;
-  padding: 0.125rem 0.25rem;
   font-size: 0.75rem;
-  background-color: #c0c5ce;
+  opacity: 0.5;
 }
 
 .name {
