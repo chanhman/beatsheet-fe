@@ -23,17 +23,17 @@ export default function Act({ actData }: Props) {
 
   return (
     <div className={styles.container}>
-      <div>
+      <div className={styles.header}>
         <h2>Act: {actName}</h2>
-        <button onClick={() => deleteAct()}>Delete act</button>
+        <div className={styles.headerOptions}>
+          <button onClick={() => deleteAct()}>Delete act</button>
+          <Link href={`/create-beat/${actId}`}>Create a beat</Link>
+        </div>
       </div>
       <div className={styles.beats}>
         {beats.map((beat: BeatData) => (
           <Beat key={beat.id} beatData={beat} actId={actId} />
         ))}
-      </div>
-      <div>
-        <Link href={`/create-beat/${actId}`}>Create beat</Link>
       </div>
     </div>
   );

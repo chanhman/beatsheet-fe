@@ -22,7 +22,9 @@ export default function Beat({ actId, beatData }: Props) {
     <div>
       <div>{beatData.name}</div>
       <div>
-        <Link href={`/edit-beat/${beatData.id}`}>Edit beat</Link>
+        <div>
+          <Link href={`/edit-beat/${beatData.id}`}>Edit beat</Link>
+        </div>
         <button onClick={() => deleteBeat()}>Delete beat</button>
       </div>
     </div>

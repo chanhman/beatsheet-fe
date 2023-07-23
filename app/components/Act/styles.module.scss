@@ -7,6 +7,17 @@
   }
 }
 
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.headerOptions {
+  display: flex;
+  gap: 1rem;
+}
+
 .beats {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
