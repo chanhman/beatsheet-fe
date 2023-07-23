@@ -1,7 +1,6 @@
 .container {
   padding: 1.5rem;
   background-color: #eee;
-  border-radius: 0.25rem;
 
   &:not(:last-child) {
     margin-bottom: 1rem;
@@ -20,9 +19,11 @@
   gap: 1rem;
 }
 
-.name {
+.heading {
   margin-top: 0;
   margin-bottom: 0;
+  font-size: 1rem;
+  text-transform: uppercase;
 }
 
 .beats {
