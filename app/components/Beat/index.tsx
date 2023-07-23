@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { useDeleteBeatMutation } from '../lib/hooks';
+import { useDeleteBeatMutation } from '../../lib/hooks';
 
 export interface BeatData {
   id: number;
