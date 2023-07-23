@@ -15,13 +15,7 @@ export default function Act({ actId }: Props) {
     },
     onSuccess: () => queryClient.invalidateQueries({ queryKey: ['acts'] }),
   });
-  const addBeat = useMutation({
-    mutationFn: (beat: any) => {
-      return axios.post(`http://localhost:8080/acts/${actId}/beats`, beat);
-    },
-    onSuccess: () =>
-      queryClient.invalidateQueries({ queryKey: ['beats', actId] }),
-  });
+
   const { isLoading, isError, data: beats } = useBeats(actId);
 
   if (isLoading) {
@@ -40,19 +34,6 @@ export default function Act({ actId }: Props) {
           <Beat key={beat.id} beatData={beat} actId={actId} />
         ))}
       </div>
-      <button
-        onClick={() =>
-          addBeat.mutate({
-            name: 'test',
-            time: 'string',
-            content: 'string',
-            cameraAngle: 'string',
-            notes: 'string',
-          })
-        }
-      >
-        Create beat
-      </button>
       <button onClick={() => deleteAct.mutate()}>Delete act</button>
     </>
   );
