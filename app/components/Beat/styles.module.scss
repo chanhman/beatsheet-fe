@@ -1,0 +1,24 @@
+.container {
+  display: grid;
+  align-items: start;
+  gap: 0.5rem;
+  padding: 1rem;
+  border: 2px solid #c0c5ce;
+  border-radius: .25rem;
+}
+
+.time {
+  display: inline-block;
+  justify-self: start;
+  padding: 0.125rem 0.25rem;
+  font-size: 0.75rem;
+  background-color: #c0c5ce;
+  border-radius: .25rem;
+}
+
+.name {}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+}

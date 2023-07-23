@@ -22,7 +22,7 @@ export default function Act({ actData }: Props) {
   }
 
   return (
-    <div className={styles.container}>
+    <section className={styles.container}>
       <div className={styles.header}>
         <h2>Act: {actName}</h2>
         <div className={styles.headerOptions}>
@@ -35,6 +35,6 @@ export default function Act({ actData }: Props) {
           <Beat key={beat.id} beatData={beat} actId={actId} />
         ))}
       </div>
-    </div>
+    </section>
   );
 }
