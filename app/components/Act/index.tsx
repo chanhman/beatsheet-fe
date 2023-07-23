@@ -3,6 +3,7 @@ import { useBeats, useDeleteActMutation } from '../../lib/hooks';
 import Beat, { BeatData } from '../Beat';
 import { Act } from '@/app/page';
 import styles from './styles.module.scss';
+import buttonStyles from '@/styles/button.module.scss';
 
 interface Props {
   actData: Act;
@@ -26,8 +27,12 @@ export default function Act({ actData }: Props) {
       <div className={styles.header}>
         <h2 className={styles.heading}>Act: {actName}</h2>
         <div className={styles.headerOptions}>
-          <button onClick={() => deleteAct()}>Delete act</button>
-          <Link href={`/create-beat/${actId}`}>Create a beat</Link>
+          <button className={buttonStyles.btnWhite} onClick={() => deleteAct()}>
+            Delete act
+          </button>
+          <Link className={buttonStyles.btn} href={`/create-beat/${actId}`}>
+            Create a beat
+          </Link>
         </div>
       </div>
       {beats.length > 0 ? (
@@ -39,7 +44,9 @@ export default function Act({ actData }: Props) {
       ) : (
         <div>
           <p>This act as no beats.</p>
-          <Link href={`/create-beat/${actId}`}>Create a beat</Link>
+          <Link className={buttonStyles.btn} href={`/create-beat/${actId}`}>
+            Create a beat
+          </Link>
         </div>
       )}
     </section>

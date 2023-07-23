@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { useDeleteBeatMutation } from '@/app/lib/hooks';
 import styles from './styles.module.scss';
+import buttonStyles from '@/styles/button.module.scss';
 
 export interface BeatData {
   id: number;
@@ -27,8 +28,18 @@ export default function Beat({ actId, beatData }: Props) {
       <h3 className={styles.name}>{beatData.name}</h3>
       <p className={styles.content}>{beatData.content}</p>
       <div className={styles.footer}>
-        <Link href={`/edit-beat/${beatData.id}`}>Edit beat</Link>
-        <button onClick={() => deleteBeat()}>Delete beat</button>
+        <Link
+          className={buttonStyles.btnMini}
+          href={`/edit-beat/${beatData.id}`}
+        >
+          Edit beat
+        </Link>
+        <button
+          className={buttonStyles.btnWhiteMini}
+          onClick={() => deleteBeat()}
+        >
+          Delete beat
+        </button>
       </div>
     </div>
   );

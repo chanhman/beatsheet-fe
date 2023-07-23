@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { useForm } from 'react-hook-form';
 import { useCreateBeatMutation } from '@/app/lib/hooks';
 import styles from '@/app/edit-beat/[id]/styles.module.scss';
+import buttonStyles from '@/styles/button.module.scss';
 
 interface FormData {
   id: number;
@@ -27,7 +28,9 @@ export default function CreateBeat({ params }: { params: { id: string } }) {
     <div className={styles.container}>
       <div className={styles.header}>
         <h1 className={styles.heading}>Create beat</h1>
-        <Link href="/">Back</Link>
+        <Link className={buttonStyles.btnWhite} href="/">
+          Back
+        </Link>
       </div>
       <form
         className={styles.form}
@@ -81,7 +84,7 @@ export default function CreateBeat({ params }: { params: { id: string } }) {
           )}
         </div>
         <div className={styles.footer}>
-          <button disabled={isLoading}>
+          <button className={buttonStyles.btn} disabled={isLoading}>
             {isLoading ? 'Creating' : 'Create'}
           </button>
         </div>

@@ -7,6 +7,7 @@ import Link from 'next/link';
 import { useForm } from 'react-hook-form';
 import { useBeat, useUpdateBeatMutation } from '@/app/lib/hooks';
 import styles from './styles.module.scss';
+import buttonStyles from '@/styles/button.module.scss';
 
 interface FormData {
   id: number;
@@ -39,7 +40,9 @@ export default function Beat({ params }: { params: { id: string } }) {
     <div className={styles.container}>
       <div className={styles.header}>
         <h1 className={styles.heading}>Edit beat</h1>
-        <Link href="/">Back</Link>
+        <Link className={buttonStyles.btnWhite} href="/">
+          Back
+        </Link>
       </div>
       <form className={styles.form} onSubmit={handleSubmit(updateBeat)}>
         <div className={styles.group}>
@@ -113,7 +116,7 @@ export default function Beat({ params }: { params: { id: string } }) {
           )}
         </div>
         <div className={styles.footer}>
-          <button disabled={updateBeatIsLoading}>
+          <button className={buttonStyles.btn} disabled={updateBeatIsLoading}>
             {updateBeatIsLoading ? 'Saving' : 'Save'}
           </button>
         </div>
