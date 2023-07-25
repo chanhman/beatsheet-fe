@@ -27,7 +27,7 @@ export default function CreateAct() {
           createAct(values, {
             onSuccess: () => {
               reset();
-              toast('Act create');
+              toast('Act created');
             },
           })
         )}

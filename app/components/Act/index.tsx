@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { motion } from 'framer-motion';
+import { toast } from 'react-toastify';
 import { useBeats, useDeleteActMutation } from '@/app/lib/hooks';
 import { Act } from '@/app/page';
 import buttonStyles from '@/styles/button.module.scss';
@@ -43,6 +44,7 @@ export default function Act({ actData }: Props) {
             onClick={() => {
               if (window.confirm('Are you sure you delete this act?')) {
                 deleteAct();
+                toast('Act deleted');
               }
             }}
           >

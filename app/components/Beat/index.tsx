@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { motion } from 'framer-motion';
+import { toast } from 'react-toastify';
 import { useDeleteBeatMutation } from '@/app/lib/hooks';
 import styles from './styles.module.scss';
 import buttonStyles from '@/styles/button.module.scss';
@@ -52,6 +53,7 @@ export default function Beat({ actId, beatData }: Props) {
           onClick={() => {
             if (window.confirm('Are you sure you delete this beat?')) {
               deleteBeat();
+              toast('Beat deleted');
             }
           }}
         >
