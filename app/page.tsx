@@ -1,9 +1,10 @@
 'use client';
 
 import { MotionWrapper } from '@/app/components/MotionWrapper';
-import { useActs } from './lib/hooks';
-import Act from './components/Act';
-import CreateAct from './components/CreateAct';
+import Status from '@/app/components/Status';
+import { useActs } from '@/app/lib/hooks';
+import Act from '@/app/components/Act';
+import CreateAct from '@/app/components/CreateAct';
 import styles from './styles.module.scss';
 
 export interface Act {
@@ -15,11 +16,11 @@ export default function Home() {
   const { isLoading, isError, data: acts } = useActs();
 
   if (isLoading) {
-    return <span>Loading...</span>;
+    return <Status title="Loading..." />;
   }
 
   if (isError) {
-    return <span>Error</span>;
+    return <Status title="Error" />;
   }
 
   return (

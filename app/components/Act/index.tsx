@@ -5,6 +5,7 @@ import { useBeats, useDeleteActMutation } from '@/app/lib/hooks';
 import { Act } from '@/app/page';
 import buttonStyles from '@/styles/button.module.scss';
 import Beat, { BeatData } from '@/app/components/Beat';
+import Status from '@/app/components/Status';
 import styles from './styles.module.scss';
 
 const beatsVariants = {
@@ -27,11 +28,11 @@ export default function Act({ actData }: Props) {
   const { mutate: deleteAct } = useDeleteActMutation(actId);
 
   if (isLoading) {
-    return <span>Loading...</span>;
+    return <Status title="Loading..." />;
   }
 
   if (isError) {
-    return <span>Error</span>;
+    return <Status title="Error" />;
   }
 
   return (

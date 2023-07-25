@@ -1,0 +1,16 @@
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100dvh;
+
+  background-color: #111;
+}
+
+.title {
+  margin-top: 0;
+  margin-bottom: 0;
+  color: #fff;
+  font-size: 3rem;
+  text-transform: uppercase;
+}
