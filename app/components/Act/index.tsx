@@ -44,7 +44,7 @@ export default function Act({ actData }: Props) {
             onClick={() => {
               if (window.confirm('Are you sure you delete this act?')) {
                 deleteAct();
-                toast('Act deleted');
+                toast.error('Act deleted');
               }
             }}
           >

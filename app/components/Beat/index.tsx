@@ -53,7 +53,7 @@ export default function Beat({ actId, beatData }: Props) {
           onClick={() => {
             if (window.confirm('Are you sure you delete this beat?')) {
               deleteBeat();
-              toast('Beat deleted');
+              toast.error('Beat deleted');
             }
           }}
         >
