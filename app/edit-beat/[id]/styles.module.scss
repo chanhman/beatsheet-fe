@@ -1,7 +1,9 @@
 .container {
-  display: grid;
-  grid-template-columns: 1fr 2fr;
-  height: 100dvh;
+  @media only screen and (min-width: 40rem) {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    height: 100dvh;
+  }
 }
 
 .header {
