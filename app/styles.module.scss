@@ -4,9 +4,9 @@
 }
 
 .toast {
-  border: 2px solid #111;
+  border: 2px solid var(--primary);
   border-radius: 0;
-  box-shadow: 0.25rem 0.25rem 0 #dedede;
+  box-shadow: 0.25rem 0.25rem 0 var(--white);
 }
 
 .header {
@@ -14,7 +14,7 @@
   flex-direction: column;
   align-items: center;
   padding: 3rem 2rem;
-  color: #fff;
+  color: var(--white);
   background-image: radial-gradient(
     circle farthest-corner at 10% 20%,
     rgba(100, 43, 115, 1) 0%,
@@ -32,7 +32,7 @@
   text-align: center;
   text-transform: uppercase;
   font-size: 2rem;
-  text-shadow: 0.25rem 0.25rem #000;
+  text-shadow: 0.25rem 0.25rem var(--primary);
 
   @media only screen and (min-width: 40rem) {
     font-size: 3rem;

@@ -3,11 +3,11 @@
   align-items: center;
   justify-content: center;
   padding: 0.625rem 1.25rem;
-  color: #fff;
+  color: var(--white);
   font-size: 1rem;
   text-align: center;
   text-decoration: none;
-  background: #111;
+  background: var(--primary);
   border: 0;
   cursor: pointer;
   transition: all 0.25s ease-out;
@@ -32,12 +32,12 @@
 .btnWhite {
   @extend .btn;
 
-  color: #111;
-  background-color: #fff;
-  border: 0.125rem solid #111;
+  color: var(--primary);
+  background-color: var(--white);
+  border: 0.125rem solid var(--primary);
 
   &:hover {
-    background-color: #fff;
+    background-color: var(--white);
   }
 }
 

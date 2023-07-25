@@ -4,13 +4,13 @@
   justify-content: center;
   height: 100dvh;
 
-  background-color: #111;
+  background-color: var(--primary);
 }
 
 .title {
   margin-top: 0;
   margin-bottom: 0;
-  color: #fff;
+  color: var(--white);
   font-size: 3rem;
   text-transform: uppercase;
 }
