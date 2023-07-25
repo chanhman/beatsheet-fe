@@ -20,8 +20,8 @@ export default function RootLayout({
         <body className={styles.body}>
           {children}
           <ToastContainer toastClassName={styles.toast} />
+          <ReactQueryDevtools />
         </body>
-        <ReactQueryDevtools />
       </html>
     </QueryClientProvider>
   );
