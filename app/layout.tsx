@@ -18,7 +18,7 @@ export default function RootLayout({
     <QueryClientProvider client={queryClient}>
       <html lang="en">
         <body className={styles.body}>{children}</body>
-        <ToastContainer />
+        <ToastContainer toastClassName={styles.toast} />
         <ReactQueryDevtools />
       </html>
     </QueryClientProvider>
