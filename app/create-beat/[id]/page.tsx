@@ -41,8 +41,8 @@ export default function CreateBeat({ params }: { params: { id: string } }) {
           onSubmit={handleSubmit((values) =>
             createBeat(values, {
               onSuccess: () => {
+                toast(`The beat "${values.name}" was created`);
                 reset();
-                toast('Beat created');
               },
             })
           )}

@@ -42,9 +42,11 @@ export default function Act({ actData }: Props) {
           <button
             className={buttonStyles.btnWhite}
             onClick={() => {
-              if (window.confirm('Are you sure you delete this act?')) {
+              if (
+                window.confirm(`Are you sure you want to delete ${actName}?`)
+              ) {
                 deleteAct();
-                toast.error('Act deleted');
+                toast.error(`${actName} was deleted`);
               }
             }}
           >

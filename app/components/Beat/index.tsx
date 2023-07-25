@@ -51,9 +51,13 @@ export default function Beat({ actId, beatData }: Props) {
         <button
           className={buttonStyles.btnWhiteMini}
           onClick={() => {
-            if (window.confirm('Are you sure you delete this beat?')) {
+            if (
+              window.confirm(
+                `Are you sure you want to delete ${beatData.name}?`
+              )
+            ) {
               deleteBeat();
-              toast.error('Beat deleted');
+              toast.error(`${beatData.name} was deleted`);
             }
           }}
         >
