@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { useForm } from 'react-hook-form';
+import { toast } from 'react-toastify';
 import { useCreateBeatMutation } from '@/app/lib/hooks';
 import Alert from '@/app/components/Alert';
 import buttonStyles from '@/styles/button.module.scss';
@@ -36,7 +37,12 @@ export default function CreateBeat({ params }: { params: { id: string } }) {
       <form
         className={styles.form}
         onSubmit={handleSubmit((values) =>
-          createBeat(values, { onSuccess: () => reset() })
+          createBeat(values, {
+            onSuccess: () => {
+              reset();
+              toast('Beat created');
+            },
+          })
         )}
       >
         <div className={styles.group}>

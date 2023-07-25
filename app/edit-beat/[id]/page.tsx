@@ -5,6 +5,7 @@
 
 import Link from 'next/link';
 import { useForm } from 'react-hook-form';
+import { toast } from 'react-toastify';
 import { useBeat, useUpdateBeatMutation } from '@/app/lib/hooks';
 import Alert from '@/app/components/Alert';
 import buttonStyles from '@/styles/button.module.scss';
@@ -45,7 +46,16 @@ export default function Beat({ params }: { params: { id: string } }) {
           Back
         </Link>
       </div>
-      <form className={styles.form} onSubmit={handleSubmit(updateBeat)}>
+      <form
+        className={styles.form}
+        onSubmit={handleSubmit((values) => {
+          updateBeat(values, {
+            onSuccess: () => {
+              toast('Changes saved');
+            },
+          });
+        })}
+      >
         <div className={styles.group}>
           <label className={styles.label} htmlFor="beatName">
             Beat name:
