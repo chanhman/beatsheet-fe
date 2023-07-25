@@ -49,7 +49,7 @@ export default function Beat({ params }: { params: { id: string } }) {
         <div className={styles.header}>
           <h1 className={styles.heading}>Edit beat</h1>
           <Link className={buttonStyles.btnWhite} href="/">
-            Back
+            ⬅️ Back
           </Link>
         </div>
         <form

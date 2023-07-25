@@ -40,7 +40,7 @@ export default function Act({ actData }: Props) {
   return (
     <section className={styles.container}>
       <div className={styles.header}>
-        <h2 className={styles.heading}>Act: {actName}</h2>
+        <h2 className={styles.heading}>📃 Act: {actName}</h2>
         <div className={styles.headerOptions}>
           <button
             className={buttonStyles.btnWhite}
@@ -53,10 +53,10 @@ export default function Act({ actData }: Props) {
               }
             }}
           >
-            Delete act
+            🗑️ Delete act
           </button>
           <Link className={buttonStyles.btn} href={`/create-beat/${actId}`}>
-            Create a beat
+            📝 Create a beat
           </Link>
         </div>
       </div>
@@ -72,10 +72,10 @@ export default function Act({ actData }: Props) {
           ))}
         </motion.div>
       ) : (
-        <div>
-          <p>This act as no beats.</p>
+        <div className={styles.empty}>
+          <p className={styles.emptyMessage}>This act as no beats 😔</p>
           <Link className={buttonStyles.btn} href={`/create-beat/${actId}`}>
-            Create a beat
+            📝 Create a beat
           </Link>
         </div>
       )}

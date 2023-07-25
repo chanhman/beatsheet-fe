@@ -9,7 +9,6 @@ import formStyles from '@/styles/form.module.scss';
 import { useCreateBeatMutation } from '@/app/lib/hooks';
 import Alert from '@/app/components/Alert';
 import styles from '@/app/edit-beat/[id]/styles.module.scss';
-
 import { MotionWrapper } from '@/app/components/MotionWrapper';
 
 interface FormData {
@@ -36,7 +35,7 @@ export default function CreateBeat({ params }: { params: { id: string } }) {
         <div className={styles.header}>
           <h1 className={styles.heading}>Create beat</h1>
           <Link className={buttonStyles.btnWhite} href="/">
-            Back
+            ⬅️ Back
           </Link>
         </div>
         <form

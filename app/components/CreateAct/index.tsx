@@ -22,7 +22,7 @@ export default function CreateAct() {
 
   return (
     <section className={styles.container}>
-      <h2 className={styles.heading}>Create a new act</h2>
+      <h2 className={styles.heading}>📝 Create a new act</h2>
       <form
         className={styles.form}
         onSubmit={handleSubmit((values) =>
@@ -43,7 +43,7 @@ export default function CreateAct() {
             type="text"
             {...register('name', { required: true })}
           />
-          <button className={buttonStyles.btn}>Create act</button>
+          <button className={buttonStyles.btn}>📝 Create act</button>
         </div>
         {errors.name?.type === 'required' && (
           <Alert text="Act name is required" />

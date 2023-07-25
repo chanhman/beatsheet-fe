@@ -39,7 +39,7 @@ export default function Beat({ actId, beatData }: Props) {
   return (
     <motion.div variants={beatVariants} className={styles.container}>
       <div>
-        <div className={styles.time}>{beatData.time}</div>
+        <div className={styles.time}>🕒 {beatData.time}</div>
       </div>
       <h3 className={styles.name}>{beatData.name}</h3>
       <p className={styles.content}>{beatData.content}</p>
@@ -48,7 +48,7 @@ export default function Beat({ actId, beatData }: Props) {
           className={buttonStyles.btnMini}
           href={`/edit-beat/${beatData.id}`}
         >
-          Edit beat
+          ✏️ Edit beat
         </Link>
         <button
           className={buttonStyles.btnWhiteMini}
@@ -63,7 +63,7 @@ export default function Beat({ actId, beatData }: Props) {
             }
           }}
         >
-          Delete beat
+          🗑️ Delete beat
         </button>
       </div>
     </motion.div>
