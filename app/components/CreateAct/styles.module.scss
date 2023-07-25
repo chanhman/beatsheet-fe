@@ -12,6 +12,12 @@
   text-transform: uppercase;
 }
 
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
 .formInner {
   display: flex;
   gap: 1rem;

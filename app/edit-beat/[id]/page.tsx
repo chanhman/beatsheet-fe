@@ -6,8 +6,9 @@
 import Link from 'next/link';
 import { useForm } from 'react-hook-form';
 import { useBeat, useUpdateBeatMutation } from '@/app/lib/hooks';
-import styles from './styles.module.scss';
+import Alert from '@/app/components/Alert';
 import buttonStyles from '@/styles/button.module.scss';
+import styles from './styles.module.scss';
 
 interface FormData {
   id: number;
@@ -56,7 +57,7 @@ export default function Beat({ params }: { params: { id: string } }) {
             defaultValue={beat.name}
           />
           {errors.name?.type === 'required' && (
-            <p role="alert">Beat name is required</p>
+            <Alert text="Beat name is required" />
           )}
         </div>
         <div className={styles.group}>
@@ -70,7 +71,7 @@ export default function Beat({ params }: { params: { id: string } }) {
             defaultValue={beat.cameraAngle}
           />
           {errors.cameraAngle?.type === 'required' && (
-            <p role="alert">Camera angle is required</p>
+            <Alert text="Camera angle is required" />
           )}
         </div>
         <div className={styles.group}>
@@ -84,7 +85,7 @@ export default function Beat({ params }: { params: { id: string } }) {
             defaultValue={beat.content}
           />
           {errors.content?.type === 'required' && (
-            <p role="alert">Content is required</p>
+            <Alert text="Content is required" />
           )}
         </div>
         <div className={styles.group}>
@@ -98,7 +99,7 @@ export default function Beat({ params }: { params: { id: string } }) {
             defaultValue={beat.notes}
           />
           {errors.notes?.type === 'required' && (
-            <p role="alert">Notes are required</p>
+            <Alert text="Notes are required" />
           )}
         </div>
         <div className={styles.group}>
@@ -112,7 +113,7 @@ export default function Beat({ params }: { params: { id: string } }) {
             defaultValue={beat.time}
           />
           {errors.time?.type === 'required' && (
-            <p role="alert">Time range is required</p>
+            <Alert text="Time range is required" />
           )}
         </div>
         <div className={styles.footer}>

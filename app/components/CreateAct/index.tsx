@@ -1,7 +1,8 @@
 import { useForm } from 'react-hook-form';
 import { useCreateActMutation } from '@/app/lib/hooks';
-import styles from './styles.module.scss';
+import Alert from '@/app/components/Alert';
 import buttonStyles from '@/styles/button.module.scss';
+import styles from './styles.module.scss';
 
 interface FormData {
   name: string;
@@ -20,6 +21,7 @@ export default function CreateAct() {
     <section className={styles.container}>
       <h2 className={styles.heading}>Create a new act</h2>
       <form
+        className={styles.form}
         onSubmit={handleSubmit((values) =>
           createAct(values, { onSuccess: () => reset() })
         )}
@@ -36,9 +38,7 @@ export default function CreateAct() {
           <button className={buttonStyles.btn}>Create act</button>
         </div>
         {errors.name?.type === 'required' && (
-          <p className={styles.alert} role="alert">
-            Act name is required
-          </p>
+          <Alert text="Act name is required" />
         )}
       </form>
     </section>

@@ -3,8 +3,9 @@
 import Link from 'next/link';
 import { useForm } from 'react-hook-form';
 import { useCreateBeatMutation } from '@/app/lib/hooks';
-import styles from '@/app/edit-beat/[id]/styles.module.scss';
+import Alert from '@/app/components/Alert';
 import buttonStyles from '@/styles/button.module.scss';
+import styles from '@/app/edit-beat/[id]/styles.module.scss';
 
 interface FormData {
   id: number;
@@ -48,7 +49,7 @@ export default function CreateBeat({ params }: { params: { id: string } }) {
             {...register('name', { required: true })}
           />
           {errors.name?.type === 'required' && (
-            <p role="alert">Beat name is required</p>
+            <Alert text="Beat name is required" />
           )}
         </div>
         <div className={styles.group}>
@@ -61,7 +62,7 @@ export default function CreateBeat({ params }: { params: { id: string } }) {
             {...register('cameraAngle', { required: true })}
           />
           {errors.cameraAngle?.type === 'required' && (
-            <p role="alert">Camera angle is required</p>
+            <Alert text="Camera angle is required" />
           )}
         </div>
         <div className={styles.group}>
@@ -74,7 +75,7 @@ export default function CreateBeat({ params }: { params: { id: string } }) {
             {...register('content', { required: true })}
           />
           {errors.content?.type === 'required' && (
-            <p role="alert">Content is required</p>
+            <Alert text="Content is required" />
           )}
         </div>
         <div className={styles.group}>
@@ -87,7 +88,7 @@ export default function CreateBeat({ params }: { params: { id: string } }) {
             {...register('notes', { required: true })}
           />
           {errors.notes?.type === 'required' && (
-            <p role="alert">Notes are required</p>
+            <Alert text="Notes are required" />
           )}
         </div>
         <div className={styles.group}>
@@ -100,7 +101,7 @@ export default function CreateBeat({ params }: { params: { id: string } }) {
             {...register('time', { required: true })}
           />
           {errors.time?.type === 'required' && (
-            <p role="alert">Time range is required</p>
+            <Alert text="Time range is required" />
           )}
         </div>
         <div className={styles.footer}>
