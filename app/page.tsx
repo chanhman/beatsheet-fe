@@ -3,6 +3,7 @@
 import { useActs } from './lib/hooks';
 import Act from './components/Act';
 import CreateAct from './components/CreateAct';
+import styles from './styles.module.scss';
 
 export interface Act {
   id: number;
@@ -21,11 +22,16 @@ export default function Home() {
   }
 
   return (
-    <main>
-      {acts.map((act: Act) => (
-        <Act key={act.id} actData={act} />
-      ))}
-      <CreateAct />
-    </main>
+    <>
+      <header className={styles.header}>
+        <h1 className={styles.title}>Your beat sheet</h1>
+      </header>
+      <main>
+        {acts.map((act: Act) => (
+          <Act key={act.id} actData={act} />
+        ))}
+        <CreateAct />
+      </main>
+    </>
   );
 }
