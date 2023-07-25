@@ -64,6 +64,7 @@ export default function CreateBeat({ params }: { params: { id: string } }) {
             <label className={styles.label} htmlFor="cameraAngle">
               Camera angle:
             </label>
+            <p className={styles.helper}>Ex. Close up shot</p>
             <input
               className={styles.input}
               type="text"
@@ -103,6 +104,7 @@ export default function CreateBeat({ params }: { params: { id: string } }) {
             <label className={styles.label} htmlFor="time">
               Time:
             </label>
+            <p className={styles.helper}>Ex. 3:30-4:00</p>
             <input
               className={styles.input}
               type="text"
