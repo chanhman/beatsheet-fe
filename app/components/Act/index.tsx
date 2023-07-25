@@ -1,11 +1,13 @@
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { toast } from 'react-toastify';
+
 import { useBeats, useDeleteActMutation } from '@/app/lib/hooks';
 import { Act } from '@/app/page';
 import buttonStyles from '@/styles/button.module.scss';
 import Beat, { BeatData } from '@/app/components/Beat';
 import Status from '@/app/components/Status';
+
 import styles from './styles.module.scss';
 
 const beatsVariants = {

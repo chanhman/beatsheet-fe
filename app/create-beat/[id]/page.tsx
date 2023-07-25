@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
+
 import { useCreateBeatMutation } from '@/app/lib/hooks';
 import Alert from '@/app/components/Alert';
 import buttonStyles from '@/styles/button.module.scss';

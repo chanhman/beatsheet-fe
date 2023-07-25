@@ -6,11 +6,13 @@
 import Link from 'next/link';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
+
 import { useBeat, useUpdateBeatMutation } from '@/app/lib/hooks';
 import Alert from '@/app/components/Alert';
 import buttonStyles from '@/styles/button.module.scss';
 import { MotionWrapper } from '@/app/components/MotionWrapper';
 import Status from '@/app/components/Status';
+
 import styles from './styles.module.scss';
 
 interface FormData {

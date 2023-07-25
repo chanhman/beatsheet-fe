@@ -1,9 +1,11 @@
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { toast } from 'react-toastify';
+
 import { useDeleteBeatMutation } from '@/app/lib/hooks';
-import styles from './styles.module.scss';
 import buttonStyles from '@/styles/button.module.scss';
+
+import styles from './styles.module.scss';
 
 const beatVariants = {
   hidden: {
