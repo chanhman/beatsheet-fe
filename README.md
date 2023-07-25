@@ -3,6 +3,7 @@
 ### API
 
 A backend service is needed to view, create, and edit the acts and beats.
+
 First, install and run docker
 
 Secondly, to get it running, clone its repo:
