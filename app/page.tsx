@@ -1,5 +1,6 @@
 'use client';
 
+import { MotionWrapper } from '@/app/components/MotionWrapper';
 import { useActs } from './lib/hooks';
 import Act from './components/Act';
 import CreateAct from './components/CreateAct';
@@ -22,7 +23,7 @@ export default function Home() {
   }
 
   return (
-    <>
+    <MotionWrapper>
       <header className={styles.header}>
         <h1 className={styles.title}>Your beat sheet</h1>
       </header>
@@ -32,6 +33,6 @@ export default function Home() {
         ))}
         <CreateAct />
       </main>
-    </>
+    </MotionWrapper>
   );
 }

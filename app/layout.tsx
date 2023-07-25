@@ -6,6 +6,7 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import styles from './styles.module.scss';
+import { MotionWrapper } from './components/MotionWrapper';
 
 const queryClient = new QueryClient();
 
