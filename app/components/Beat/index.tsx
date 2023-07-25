@@ -36,7 +36,11 @@ export default function Beat({ actId, beatData }: Props) {
         </Link>
         <button
           className={buttonStyles.btnWhiteMini}
-          onClick={() => deleteBeat()}
+          onClick={() => {
+            if (window.confirm('Are you sure you delete this beat?')) {
+              deleteBeat();
+            }
+          }}
         >
           Delete beat
         </button>

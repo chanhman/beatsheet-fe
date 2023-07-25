@@ -27,7 +27,14 @@ export default function Act({ actData }: Props) {
       <div className={styles.header}>
         <h2 className={styles.heading}>Act: {actName}</h2>
         <div className={styles.headerOptions}>
-          <button className={buttonStyles.btnWhite} onClick={() => deleteAct()}>
+          <button
+            className={buttonStyles.btnWhite}
+            onClick={() => {
+              if (window.confirm('Are you sure you delete this act?')) {
+                deleteAct();
+              }
+            }}
+          >
             Delete act
           </button>
           <Link className={buttonStyles.btn} href={`/create-beat/${actId}`}>
