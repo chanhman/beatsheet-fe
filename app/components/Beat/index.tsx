@@ -1,7 +1,20 @@
 import Link from 'next/link';
+import { motion } from 'framer-motion';
 import { useDeleteBeatMutation } from '@/app/lib/hooks';
 import styles from './styles.module.scss';
 import buttonStyles from '@/styles/button.module.scss';
+
+const beatVariants = {
+  hidden: {
+    opacity: 0,
+  },
+  show: {
+    opacity: 1,
+    transition: {
+      duration: 0.5,
+    },
+  },
+};
 
 export interface BeatData {
   id: number;
@@ -21,7 +34,7 @@ export default function Beat({ actId, beatData }: Props) {
   const { mutate: deleteBeat } = useDeleteBeatMutation(actId, beatData.id);
 
   return (
-    <div className={styles.container}>
+    <motion.div variants={beatVariants} className={styles.container}>
       <div>
         <div className={styles.time}>{beatData.time}</div>
       </div>
@@ -45,6 +58,6 @@ export default function Beat({ actId, beatData }: Props) {
           Delete beat
         </button>
       </div>
-    </div>
+    </motion.div>
   );
 }

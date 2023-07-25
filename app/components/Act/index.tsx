@@ -1,9 +1,20 @@
 import Link from 'next/link';
-import { useBeats, useDeleteActMutation } from '../../lib/hooks';
-import Beat, { BeatData } from '../Beat';
+import { motion } from 'framer-motion';
+import { useBeats, useDeleteActMutation } from '@/app/lib/hooks';
 import { Act } from '@/app/page';
-import styles from './styles.module.scss';
 import buttonStyles from '@/styles/button.module.scss';
+import Beat, { BeatData } from '@/app/components/Beat';
+import styles from './styles.module.scss';
+
+const beatsVariants = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.3,
+    },
+  },
+};
 
 interface Props {
   actData: Act;
@@ -43,11 +54,16 @@ export default function Act({ actData }: Props) {
         </div>
       </div>
       {beats.length > 0 ? (
-        <div className={styles.beats}>
+        <motion.div
+          variants={beatsVariants}
+          initial="hidden"
+          animate="show"
+          className={styles.beats}
+        >
           {beats.map((beat: BeatData) => (
             <Beat key={beat.id} beatData={beat} actId={actId} />
           ))}
-        </div>
+        </motion.div>
       ) : (
         <div>
           <p>This act as no beats.</p>
