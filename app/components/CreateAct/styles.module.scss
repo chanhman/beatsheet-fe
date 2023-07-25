@@ -12,5 +12,21 @@
   text-transform: uppercase;
 }
 
-.form {
+.formInner {
+  display: flex;
+  gap: 1rem;
+}
+
+.label {
+  align-self: center;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.input {
+  padding-left: 0.5rem;
+}
+
+.alert {
+  text-align: right;
 }
