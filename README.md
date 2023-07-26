@@ -45,4 +45,4 @@ To compile the app, run the following:
 next build
 ```
 
-Other methods of deploying and running the app can be found in [Next.js's official docs](https://nextjs.org/docs/pages/building-your-application/deploying)https://nextjs.org/docs/pages/building-your-application/deploying.
+Other methods of deploying and running the app can be found in Next.js's official [docs](https://nextjs.org/docs/pages/building-your-application/deploying).
