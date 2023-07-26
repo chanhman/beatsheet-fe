@@ -21,7 +21,6 @@
 
 .content {
   margin-top: 0;
-  margin-bottom: 0;
 }
 
 .footer {
@@ -29,4 +28,6 @@
   align-items: center;
   justify-content: space-between;
   margin-top: auto;
+  padding-top: 1rem;
+  border-top: 2px solid var(--primary)
 }
