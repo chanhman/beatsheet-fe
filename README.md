@@ -40,7 +40,7 @@ Lastly, open [http://localhost:3000](http://localhost:3000) with your browser to
 To compile the app, run the following:
 
 ```
-https://nextjs.org/docs/pages/building-your-application/deploying
+next build
 ```
 
 Other methods of deploying and running the app can be found in [Next.js's official docs](https://nextjs.org/docs/pages/building-your-application/deploying)https://nextjs.org/docs/pages/building-your-application/deploying.
