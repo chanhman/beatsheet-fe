@@ -35,7 +35,7 @@ npm run dev
 
 Lastly, open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-Additional information can be found in Nexy.js's official documentation found [here](https://nextjs.org/docs/getting-started/installation).
+Additional information can be found in Next.js's official documentation found [here](https://nextjs.org/docs/getting-started/installation).
 
 ### Building
 
